@@ -148,21 +148,22 @@ function InnerCustomComponent(props: IProps) {
       }
       const { method, data, id } = payload;
       if (type === EventTypeEnum.Invoke) {
-        const fn = methodsRef.current[method];
-        if (!fn || typeof fn !== "function") {
+        if (methodsRef.current.hasOwnProperty(method) && typeof methodsRef.current[method] === "function") {
+          const fn = methodsRef.current[method];
+          fn(data).then((res: any) => {
+            sendMessage(iframe, {
+              type: EventTypeEnum.Invoke,
+              payload: {
+                id,
+                method,
+                response: res,
+              },
+            });
+          });
+        } else {
           // TODO: response error
           return;
         }
-        fn(data).then((res: any) => {
-          sendMessage(iframe, {
-            type: EventTypeEnum.Invoke,
-            payload: {
-              id,
-              method,
-              response: res,
-            },
-          });
-        });
       }
     };
 
