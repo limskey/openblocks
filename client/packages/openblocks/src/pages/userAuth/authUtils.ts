@@ -67,11 +67,11 @@ export function authRespValidate(
   infoCompleteCheck: boolean,
   redirectUrl: string | null
 ) {
-  let replaceUrl = redirectUrl || BASE_URL;
+  let replaceUrl = getSafeAuthRedirectURL(redirectUrl);
   if (infoCompleteCheck) {
     // need complete info
     replaceUrl = redirectUrl
-      ? `${USER_INFO_COMPLETION}?redirectUrl=${redirectUrl}`
+      ? `${USER_INFO_COMPLETION}?redirectUrl=${getSafeAuthRedirectURL(redirectUrl)}`
       : USER_INFO_COMPLETION;
   }
   if (doValidResponse(resp)) {
