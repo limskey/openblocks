@@ -61,7 +61,7 @@ export const COLOR_PALETTE = [
 
 export const PHONE_NUMBER_PATTERN = /^1\d{10}$/;
 export const EMAIL_PATTERN = /^[\w-+.]+@([\w-]+\.)+[\w-]{2,}$/;
-export const URL_PATTERN = /^(https?:\/\/)?([\w-])+\.{1}([a-zA-Z]{2,63})([/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)$/; // prettier-ignore
+export const URL_PATTERN = /^(https?:\/\/)?([\w-])+\.{1}([a-zA-Z]{2,63})([/\w]*-?)*\/?\??([^#\n\r]*)?#?([^\n\r]*)$/; // prettier-ignore
 
 export const checkOtpValid = (value: string): boolean => {
   return /^\d{6}$/.test(value);
