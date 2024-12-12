@@ -67,7 +67,7 @@ public class SecurityConfig {
         http.cors()
                 .configurationSource(buildCorsConfigurationSource())
                 .and()
-                .csrf().disable()
+                .csrf().and()
                 .anonymous().principal(createAnonymousUser())
                 .and()
                 .httpBasic()
